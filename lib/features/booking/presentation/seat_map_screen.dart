@@ -17,13 +17,13 @@ class SeatMapScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pilih Kursi - Teater Reguler'),
+        title: const Text('Select Seats - Standard Theater'),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
       body: Column(
         children: [
-          // Indikator Layar Bioskop
+          // Cinema screen indicator
           Container(
             margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
             height: 35,
@@ -41,7 +41,7 @@ class SeatMapScreen extends ConsumerWidget {
             ),
             child: const Center(
               child: Text(
-                'LAYAR BIOSKOP',
+                'SCREEN',
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
@@ -51,7 +51,7 @@ class SeatMapScreen extends ConsumerWidget {
             ),
           ),
 
-          // Area Peta Kursi dengan Zoom & Pan
+          // Seat map with zoom and pan
           Expanded(
             child: InteractiveViewer(
               boundaryMargin: const EdgeInsets.all(50),
@@ -66,7 +66,7 @@ class SeatMapScreen extends ConsumerWidget {
             ),
           ),
 
-          // Footer / Panel Informasi & Checkout
+          // Footer information and checkout panel
           Container(
             padding: const EdgeInsets.all(20),
             decoration: const BoxDecoration(
@@ -81,7 +81,7 @@ class SeatMapScreen extends ConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      '${selectedSeats.length} Kursi Dipilih',
+                      '${selectedSeats.length} Seats Selected',
                       style: const TextStyle(color: Colors.grey, fontSize: 13),
                     ),
                     const SizedBox(height: 4),
@@ -109,10 +109,10 @@ class SeatMapScreen extends ConsumerWidget {
                   onPressed: selectedSeats.isEmpty
                       ? null
                       : () {
-                          // Aksi lanjut ke pembayaran atau simulasi view
+                          // Continue to payment or a simulated checkout view.
                         },
                   child: const Text(
-                    'Lanjutkan',
+                    'Continue',
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -127,13 +127,13 @@ class SeatMapScreen extends ConsumerWidget {
     );
   }
 
-  // Helper untuk merender grid kursi berdasarkan baris
+  // Render the seat grid by row.
   Widget _buildSeatGrid(
     BuildContext context,
     WidgetRef ref,
     List<SeatModel> seats,
   ) {
-    // Kelompokkan kursi berdasarkan baris (A, B, C, dst.)
+    // Group seats by row (A, B, C, etc.).
     final Map<String, List<SeatModel>> groupedByRow = {};
     for (var seat in seats) {
       groupedByRow.putIfAbsent(seat.rowLabel, () => []).add(seat);
@@ -150,7 +150,7 @@ class SeatMapScreen extends ConsumerWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Label Baris di sebelah kiri
+              // Row label on the left
               SizedBox(
                 width: 24,
                 child: Text(
@@ -163,10 +163,10 @@ class SeatMapScreen extends ConsumerWidget {
                 ),
               ),
               const SizedBox(width: 8),
-              // Daftar tombol kursi per baris
+              // Seat buttons for this row
               ...rowSeats.map((seat) => _buildSeatButton(context, ref, seat)),
               const SizedBox(width: 8),
-              // Label Baris di sebelah kanan (opsional untuk estetika bioskop)
+              // Optional row label on the right for visual balance
               SizedBox(
                 width: 24,
                 child: Text(
@@ -185,7 +185,7 @@ class SeatMapScreen extends ConsumerWidget {
     );
   }
 
-  // Widget Tombol Kursi Individual
+  // Individual seat button
   Widget _buildSeatButton(BuildContext context, WidgetRef ref, SeatModel seat) {
     Color buttonColor;
     Color textColor = Colors.white;

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'features/booking/presentation/home_movie_screen.dart';
+
 import 'app/config/theme.dart';
 
 void main() {
@@ -16,15 +18,9 @@ class CineViewApp extends StatelessWidget {
     return MaterialApp(
       title: 'CineView',
       debugShowCheckedModeBanner: false,
+      locale: const Locale('en'),
       theme: AppTheme.darkTheme,
-      home: const Scaffold(
-        body: Center(
-          child: Text(
-            'CineView Initialized 🎬',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ),
+      home: const HomeMovieScreen(),
     );
   }
 }

@@ -52,6 +52,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   google_fonts: ^6.1.0
   lucide_icons: ^0.252.0
+  intl: ^0.20.3
 
 dev_dependencies:
   flutter_test:
